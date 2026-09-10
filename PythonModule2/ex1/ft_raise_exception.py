@@ -1,6 +1,11 @@
 
 def input_temperature(temp_str: str) -> int:
-    return int(temp_str)
+    x: int = int(temp_str)
+    if x > 40:
+        raise ValueError(f"{x}°C is too hot for plants (max 40°C)")
+    if x < 0:
+        raise ValueError(f"{x}°C is too cold for plants (min 0°C)")
+    return x
 
 
 def test_temperature_individual(temp_str: str) -> None:
@@ -15,9 +20,13 @@ def test_temperature_individual(temp_str: str) -> None:
 def test_temperature() -> None:
     print("=== Garden Temperature ===")
     print("")
-    test_temperature_individual("25")
+    test_temperature("25")
     print("")
-    test_temperature_individual("abc")
+    test_temperature("abc")
+    print("")
+    test_temperature("100")
+    print("")
+    test_temperature("-50")
     print("")
     print("All tests completed - program didn't crash!")
 
