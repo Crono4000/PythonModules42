@@ -20,13 +20,13 @@ def test_temperature_individual(temp_str: str) -> None:
 def test_temperature() -> None:
     print("=== Garden Temperature ===")
     print("")
-    test_temperature("25")
+    test_temperature_individual("25")
     print("")
-    test_temperature("abc")
+    test_temperature_individual("abc")
     print("")
-    test_temperature("100")
+    test_temperature_individual("100")
     print("")
-    test_temperature("-50")
+    test_temperature_individual("-50")
     print("")
     print("All tests completed - program didn't crash!")
 
