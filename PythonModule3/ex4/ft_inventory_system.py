@@ -30,8 +30,10 @@ if __name__ == "__main__":
     total: int = sum(inventory.values())
     print(f"Total quantity of the {len(inventory.keys())} "
           f"items: {total}")
-    for key in inventory.keys():
-        print(f"Item {key} represents {round((inventory[key]/total)*100, 1)}%")
+    if total != 0:
+        for key in inventory.keys():
+            print(f"Item {key} represents"
+            f"{round((inventory[key]/total)*100, 1)}%")
 
     key_current: str = ""
     for key in inventory.keys():
@@ -40,13 +42,15 @@ if __name__ == "__main__":
             continue
         if inventory[key] > inventory[key_current]:
             key_current = key
-    print(f"Item most abundant: {key_current} with quantity"
-          f" {inventory[key_current]}")
+    if key_current != "":
+        print(f"Item most abundant: {key_current} with quantity"
+              f" {inventory[key_current]}")
     for key in inventory.keys():
         if inventory[key] < inventory[key_current]:
             key_current = key
-    print(f"Item least abundant: {key_current} with quantity"
-          f" {inventory[key_current]}")
+    if key_current != "":
+        print(f"Item least abundant: {key_current} with quantity"
+              f" {inventory[key_current]}")
 
     inventory.update({"magic_item": 1})
     print("Updated inventory:", inventory)

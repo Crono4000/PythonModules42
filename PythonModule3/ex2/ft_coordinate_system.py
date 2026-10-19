@@ -7,8 +7,15 @@ def get_player_pos() -> tuple[float, float, float]:
     coordinates: list[float] = []
     continu: bool = True
     while continu:
-        parts = input("Enter new coordinates as "
-                      "floats in format 'x,y,z':").split(",")
+        try:
+            parts = input("Enter new coordinates as "
+                          "floats in format 'x,y,z':").split(",")
+        except KeyboardInterrupt:
+            print("\nInterrompido pelo utilizador!")
+            continue
+        except EOFError:
+            print("\nFim da entrada!")
+            continue
         if len(parts) != 3:
             print("Invalid syntax")
             continue
