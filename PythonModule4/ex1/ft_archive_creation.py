@@ -35,20 +35,24 @@ if __name__ == "__main__":
             else:
                 print("Not saving data.")
 
-        except FileNotFoundError:
-            print(f"Error opening file '{sys.argv[1]}': [Errno 2] No such file"
-                  f" or directory: \'{sys.argv[1]}\'\n")
-        except PermissionError:
-            print(f"Error opening file '{sys.argv[1]}': [Errno 13] Permission"
-                  f" denied: \'{sys.argv[1]}\'\n")
+        except FileNotFoundError as error:
+            print(f"Error opening file '{error.filename}': "
+                  "[Errno 2] No such file"
+                  f" or directory: \'{error.filename}\'\n")
+        except PermissionError as error:
+            print(f"Error opening file '{error.filename}': "
+                  "[Errno 13] Permission"
+                  f" denied: \'{error.filename}\'\n")
         except NotADirectoryError as error:
-            print(f"Error opening file '{sys.argv[1]}': [Errno {error.errno}]"
+            print(f"Error opening file '{error.filename}': "
+                  f"[Errno {error.errno}]"
                   f" A component from the path should be a folder but it's a"
-                  f" file: \'{sys.argv[1]}\'\n")
+                  f" file: \'{error.filename}\'\n")
         except IsADirectoryError as error:
-            print(f"Error opening file '{sys.argv[1]}': [Errno {error.errno}]"
+            print(f"Error opening file '{error.filename}': "
+                  f"[Errno {error.filename}]"
                   f" The file is a folder: "
-                  f"\'{sys.argv[1]}\'\n")
+                  f"\'{error.filename}\'\n")
         except KeyboardInterrupt:
             print("\nInterrompido pelo utilizador!")
         except EOFError:
