@@ -28,7 +28,7 @@ if __name__ == "__main__":
     print("Player Charlie:", charlie)
     print("Player Dylan:", dylan)
     print("")
-    print("All distinct achievements:", all)
+    print("All distinct achievements:", alice.union(bob, charlie, dylan))
     print("")
     print("Common achievements:", alice.intersection(bob, charlie, dylan))
     print("")

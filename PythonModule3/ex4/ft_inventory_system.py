@@ -33,7 +33,7 @@ if __name__ == "__main__":
     if total != 0:
         for key in inventory.keys():
             print(f"Item {key} represents"
-            f"{round((inventory[key]/total)*100, 1)}%")
+                  f"{round((inventory[key]/total)*100, 1)}%")
 
     key_current: str = ""
     for key in inventory.keys():

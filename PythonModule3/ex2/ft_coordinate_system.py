@@ -3,13 +3,12 @@ import math
 
 
 def get_player_pos() -> tuple[float, float, float]:
-    parts: list[str] = ""
     continu: bool = True
     while continu:
         coordinates: list[float] = []
         try:
-            parts = input("Enter new coordinates as "
-                          "floats in format 'x,y,z':").split(",")
+            parts: list[str] = input("Enter new coordinates as "
+                                     "floats in format 'x,y,z':").split(",")
         except KeyboardInterrupt:
             print("\nInterrompido pelo utilizador!")
             continue

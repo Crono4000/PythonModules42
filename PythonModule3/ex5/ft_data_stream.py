@@ -39,4 +39,3 @@ if __name__ == "__main__":
     for consumed in consumer:
         print("Got event from list:", consumed)
         print("Remains in list:", list_events)
-    
