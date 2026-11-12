@@ -31,10 +31,12 @@ if __name__ == "__main__":
     list_events: list[tuple[str, str]] = []
     for wow in range(10):
         list_events.append(next(event_generator))
+
+    print("Built list of 10 event:", list_events)
     consumer: typing.Generator[
         tuple[str, str], None, None] = consume_event(list_events)
-    consumed: tuple[str, str] = next(consumer)
-    while consumed:
+
+    for consumed in consumer:
         print("Got event from list:", consumed)
         print("Remains in list:", list_events)
     

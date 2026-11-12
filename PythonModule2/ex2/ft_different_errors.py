@@ -1,7 +1,7 @@
 
 def garden_operations(operation_number: int) -> None:
     if operation_number == 0:
-        print(f"{int("value")}")
+        print(f"{int('value')}")
     elif operation_number == 1:
         print(f"result: {2 / 0}")
     elif operation_number == 2:

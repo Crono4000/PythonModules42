@@ -3,10 +3,10 @@ import math
 
 
 def get_player_pos() -> tuple[float, float, float]:
-    parts: str = ""
-    coordinates: list[float] = []
+    parts: list[str] = ""
     continu: bool = True
     while continu:
+        coordinates: list[float] = []
         try:
             parts = input("Enter new coordinates as "
                           "floats in format 'x,y,z':").split(",")
@@ -27,6 +27,7 @@ def get_player_pos() -> tuple[float, float, float]:
                 print(f"Error on parameter '{part}': could not convert string "
                       f"to float: '{part}'")
                 continu = True
+                break
     return (coordinates[0], coordinates[1], coordinates[2])
 
 
