@@ -4,12 +4,14 @@ import typing
 
 
 if __name__ == "__main__":
+    file: typing.IO[str] | None = None
     if len(sys.argv) != 2:
         print("Usage: ft_ancient_text.py <file>\n")
     else:
+        print("=== Cyber Archives Recovery ===")
         print("Accessing file \'", sys.argv[1], "\'")
         try:
-            file: typing.IO[str] = open(sys.argv[1], "r")
+            file = open(sys.argv[1], "r")
             print("---\n")
             print(file.read())
             print("---")
@@ -30,3 +32,8 @@ if __name__ == "__main__":
             print(f"Error opening file '{sys.argv[1]}': [Errno {error.errno}]"
                   f" The file is a folder: "
                   f"\'{sys.argv[1]}\'\n")
+        except Exception as error:
+            print(f"{error}")
+        finally:
+            if file is not None:
+                file.close()

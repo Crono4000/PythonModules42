@@ -4,13 +4,15 @@ import typing
 
 
 if __name__ == "__main__":
+    file: typing.IO[str] | None = None
+    file2: typing.IO[str] | None = None
     if len(sys.argv) != 2:
-        print("Usage: ft_ancient_text.py <file>\n")
+        print(f"Usage: {sys.argv[0]} <file>\n")
     else:
         print("=== Cyber Archives Recovery & Preservation ===")
         print("Accessing file \'", sys.argv[1], "\'")
         try:
-            file: typing.IO[str] = open(sys.argv[1], "r")
+            file = open(sys.argv[1], "r")
             print("---\n")
             data: str = file.read()
             print(data)
@@ -20,18 +22,21 @@ if __name__ == "__main__":
             print("")
             print("Transform data:")
             print("---\n")
-            transformed: list[str] = data.split("\n")
-            for indice in range(len(transformed)):
-                transformed[indice] += "#"
-                print(transformed[indice])
+            transformed: list[str] = []
+            for line in data.split("\n"):
+                line = line + "#"
+                transformed.append(line)
+                print(line)
             print("---")
             file_name: str = input("Enter new file name (or empty):")
             if file_name != "":
-                file2: typing.IO[str] = open(file_name, "w")
+                file2 = open(file_name, "w")
                 print(f"Saving data to \'{file_name}\'")
-                for indice in range(len(transformed)):
-                    file2.write(transformed[indice] + '\n')
-                print(f"Data saved in file \'{sys.argv[1]}\'\n")
+                for line in transformed[:(len(transformed) - 1):]:
+                    file2.write(line + '\n')
+                file2.write(transformed[len(transformed) - 1])
+                print(f"Data saved in file \'{file_name}\'\n")
+                file2.close()
             else:
                 print("Not saving data.")
 
@@ -50,10 +55,18 @@ if __name__ == "__main__":
                   f" file: \'{error.filename}\'\n")
         except IsADirectoryError as error:
             print(f"Error opening file '{error.filename}': "
-                  f"[Errno {error.filename}]"
+                  f"[Errno {error.errno}]"
                   f" The file is a folder: "
                   f"\'{error.filename}\'\n")
         except KeyboardInterrupt:
             print("\nInterrompido pelo utilizador!")
         except EOFError:
             print("\nFim da entrada!")
+        except Exception as error:
+            print(f"{error}")
+
+        finally:
+            if file is not None:
+                file.close()
+            if file2 is not None:
+                file2.close()
